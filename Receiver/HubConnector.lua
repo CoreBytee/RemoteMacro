@@ -56,7 +56,6 @@ end
 
 print("Checking for updates")
 local Response = http.get("https://raw.githubusercontent.com/CoreBytee/RemoteMacro/main/Receiver/Version.lua")
-print(Response.readAll())
 if load(Response.readAll())() ~= require("Version") then
     print("Updating")
     local UpdateResponse = http.get("https://raw.githubusercontent.com/CoreBytee/RemoteMacro/main/Receiver/HubConnector.lua")
@@ -64,6 +63,8 @@ if load(Response.readAll())() ~= require("Version") then
     
     WriteFile("HubConnector.lua", UpdateResponse.readAll())
     WriteFile("Version.lua", UpdatedVersion.readAll())
+
+    os.reboot()
 end
 
 while true do
