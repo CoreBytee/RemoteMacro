@@ -29,7 +29,7 @@ end
 local function Connect()
     print("Connecting")
     local Socket = http.websocket(SocketUrl .. "/socket/?token=" .. Token .. "&name=" .. Name)
-    print("Connected!")
+    print("Connected! as " .. Name)
 
     while true do
         local Message = Socket.receive()
