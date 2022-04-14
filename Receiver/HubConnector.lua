@@ -66,6 +66,8 @@ if load(Response.readAll())() ~= require("Version") then
     WriteFile("Version.lua", UpdatedVersion.readAll())
 
     os.reboot()
+else
+    print("No updates found")
 end
 
 while true do
