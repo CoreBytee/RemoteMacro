@@ -15,6 +15,7 @@ else
     HttpUrl = "http" .. BaseUrl
 end
 
+term.clear()
 
 local function CanConnect()
     return ({http.get(HttpUrl .. "/ping/")})[1] ~= nil
