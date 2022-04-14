@@ -14,7 +14,7 @@ else
     SocketUrl = "ws" .. BaseUrl
     HttpUrl = "http" .. BaseUrl
 end
-print(HttpUrl)
+
 
 local function CanConnect()
     return ({http.get(HttpUrl .. "/ping/")})[1] ~= nil
@@ -48,6 +48,23 @@ local function Connect()
     
 end
 
+local function WriteFile(File, Data)
+    local File = fs.open(File, "w")
+    File.write(Data)
+    File.close()
+end
+
+print("Checking for updates")
+local Response = http.get("https://raw.githubusercontent.com/CoreBytee/RemoteMacro/main/Receiver/Version.lua")
+print(Response.readAll())
+if load(Response.readAll())() ~= require("Version") then
+    print("Updating")
+    local UpdateResponse = http.get("https://raw.githubusercontent.com/CoreBytee/RemoteMacro/main/Receiver/HubConnector.lua")
+    local UpdatedVersion = http.get("https://raw.githubusercontent.com/CoreBytee/RemoteMacro/main/Receiver/Version.lua")
+    
+    WriteFile("HubConnector.lua", UpdateResponse.readAll())
+    WriteFile("Version.lua", UpdatedVersion.readAll())
+end
 
 while true do
     print("Trying to connect!")
