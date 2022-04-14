@@ -7,7 +7,7 @@ App.bind(
     }
 )
 require("weblit-websocket")
-App.use(require('weblit-logger'))
+--App.use(require('weblit-logger'))
 App.use(require('weblit-auto-headers'))
 
 local Connections = {}
