@@ -34,6 +34,17 @@ App.route(
 App.route(
     {
         method = "GET",
+        path = "/installer",
+    },
+    function (Request, Response)
+        Response.body = ({require("coro-http").request("GET", "https://raw.githubusercontent.com/CoreBytee/RemoteMacro/main/Receiver/Installer.lua")})[2]
+        Response.code = 200
+    end
+)
+
+App.route(
+    {
+        method = "GET",
         path = "/hook/",
     },
     function (Request, Response)
